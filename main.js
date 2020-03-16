@@ -12,3 +12,12 @@ function random(min,max) {
   const num = Math.floor(Math.random()*(max-min)) + min;
   return num;
 }
+
+function Ball(x, y, velx, vely, color, size) {
+    this.x = x;
+    this.y = y;
+    this.velx = velx;
+    this.vely = vely;
+    this.color = color;
+    this.size = size;
+}
