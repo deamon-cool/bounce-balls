@@ -52,7 +52,7 @@ Ball.prototype.update = function() {
 
 let balls = [];
 
-while (balls.length < 20) {
+for(let i = 0; i < 20; i++) {
     let size = random(10, 20);
     let ball = new Ball(
         random(0 + size, width - size),
