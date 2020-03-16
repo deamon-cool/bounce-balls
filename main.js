@@ -27,4 +27,26 @@ Ball.prototype.draw = function() {
     ctx.fillStyle = this.color;
     ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
     ctx.fill();
-}
+};
+
+Ball.prototype.update = function() {
+    if ((this.x + this.size) >= width) {
+        this.velx = -(this.velx);
+    }
+
+    if ((this.x - this.size) <= 0) {
+        this.velx = -(this.velx);
+    }
+
+    if ((this.y + size) >= height) {
+        this.vely = -(this.vely);
+    }
+
+    if ((this.y - size) <= 0) {
+        this.vely = -(this.vely);
+    }
+
+    this.x += this.velx;
+    this.y += this.vely;
+};
+
