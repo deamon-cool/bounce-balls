@@ -38,11 +38,11 @@ Ball.prototype.update = function() {
         this.velx = -(this.velx);
     }
 
-    if ((this.y + size) >= height) {
+    if ((this.y + this.size) >= height) {
         this.vely = -(this.vely);
     }
 
-    if ((this.y - size) <= 0) {
+    if ((this.y - this.size) <= 0) {
         this.vely = -(this.vely);
     }
 
