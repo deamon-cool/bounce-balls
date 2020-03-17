@@ -136,17 +136,14 @@ EvilCircle.prototype.setControls = function() {
 };
 
 EvilCircle.prototype.collisionDetect = function() {
-    for (let j = 0; j < balls.length; j++) {
-        if (balls[j].exists) {
-            const dx = this.x - balls[j].x;
-            const dy = this.y - balls[j].y;
+    for (let k = 0; k < balls.length; k++) {
+        if (balls[k].exists) {
+            const dx = this.x - balls[k].x;
+            const dy = this.y - balls[k].y;
             const distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (distance < this.size + balls[j].size) {
-                balls[j].exists = false;
-
-                // ADD CODE HERE
-
+            if (distance < this.size + balls[k].size) {
+                balls[k].exists = false;
             }
         }
     }
@@ -176,9 +173,11 @@ function loop() {
     ctx.fillRect(0,0,width,height);
 
     for (let i = 0; i < balls.length; i++) {
-        balls[i].draw();
-        balls[i].update();
-        balls[i].collisionDetect();
+        if(balls[i].exists){
+            balls[i].draw();
+            balls[i].update();
+            balls[i].collisionDetect();
+        }
     }
 
     requestAnimationFrame(loop);
