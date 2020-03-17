@@ -168,6 +168,9 @@ for(let i = 0; i < 20; i++) {
     balls.push(ball);
 }
 
+let evilCircle = new EvilCircle(100, 100, true);
+evilCircle.setControls();
+
 function loop() {
     ctx.fillStyle = 'rgba(0,0,0,.1)';
     ctx.fillRect(0,0,width,height);
@@ -179,6 +182,10 @@ function loop() {
             balls[i].collisionDetect();
         }
     }
+
+    evilCircle.draw();
+    evilCircle.checkBounds();
+    evilCircle.collisionDetect();
 
     requestAnimationFrame(loop);
 }
