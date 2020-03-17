@@ -58,7 +58,7 @@ Ball.prototype.collisionDetect = function() {
             const distance = Math.sqrt(dx * dx + dy * dy);
 
             if (distance < this.size + balls[j].size) {
-                balls.color = this.color = `rgb(${random(0,255)},${random(0,255)},${random(0,255)})`;
+                balls[j].color = this.color = `rgb(${random(0,255)},${random(0,255)},${random(0,255)})`;
             }
         }
     }
