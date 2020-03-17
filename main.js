@@ -10,6 +10,7 @@ function random(min,max) {
   return num;
 }
 
+
 function Shape(x,y,velx,vely,exists) {
     this.x = x;
     this.y = y;
@@ -18,14 +19,28 @@ function Shape(x,y,velx,vely,exists) {
     this.exists = exists;
 }
 
-Shape.prototype.draw = function() {
+
+function Ball(x, y, velx, vely, exists, color, size) {
+    Shape.call(this, x, y, velx, vely, exists);
+
+    this.color = color;
+    this.size = size;
+}
+
+Object.defineProperty(Ball.prototype, 'constructor', {
+    value: Ball,
+    enumerable: false,
+    writable: true
+});
+
+Ball.prototype.draw = function() {
     ctx.beginPath();
     ctx.fillStyle = this.color;
     ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
     ctx.fill();
 };
 
-Shape.prototype.update = function() {
+Ball.prototype.update = function() {
     if ((this.x + this.size) >= width) {
         this.velx = -(this.velx);
     }
@@ -46,7 +61,7 @@ Shape.prototype.update = function() {
     this.y += this.vely;
 };
 
-Shape.prototype.collisionDetect = function() {
+Ball.prototype.collisionDetect = function() {
     for (let j = 0; j < balls.length; j++) {
         if (!(this === balls[j])) {
             const dx = this.x - balls[j].x;
@@ -61,31 +76,16 @@ Shape.prototype.collisionDetect = function() {
 };
 
 
-function Ball(x, y, velx, vely, exists, color, size) {
-    Shape.call(x, y, velx, vely, exists);
-
-    this.color = color;
-    this.size = size;
-}
-
-Ball.prototype = Object.create(Shape.prototype);
-
-Object.defineProperty(Ball.prototype, 'constructor', {
-    value: Ball,
-    enumerable: false,
-    writable: true
-});
-
-
 let balls = [];
 
-for(let i = 0; i < 40; i++) {
+for(let i = 0; i < 20; i++) {
     let size = random(10, 20);
     let ball = new Ball(
         random(0 + size, width - size),
         random(0 + size, height - size),
         random(-7, 7),
         random(-7, 7),
+        true,
         `rgb(${random(0,255)},${random(0,255)},${random(0,255)})`,
         size
     );
