@@ -124,13 +124,13 @@ EvilCircle.prototype.setControls = function() {
     let _this = this;
     window.onkeydown = function(e) {
         if (e.key === 'ArrowLeft') {
-            _this.x -= _this.velX;
+            _this.x -= _this.velx;
           } else if (e.key === 'ArrowRight') {
-            _this.x += _this.velX;
+            _this.x += _this.velx;
           } else if (e.key === 'ArrowUp') {
-            _this.y -= _this.velY;
+            _this.y -= _this.vely;
           } else if (e.key === 'ArrowDown') {
-            _this.y += _this.velY;
+            _this.y += _this.vely;
           }
     };
 };
