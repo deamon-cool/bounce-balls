@@ -171,6 +171,11 @@ for(let i = 0; i < 20; i++) {
 let evilCircle = new EvilCircle(100, 100, true);
 evilCircle.setControls();
 
+
+let ballsCount = 0;
+let p = document.querySelector('p');
+let textBallCount = p.textContent;
+
 function loop() {
     ctx.fillStyle = 'rgba(0,0,0,.1)';
     ctx.fillRect(0,0,width,height);
@@ -180,12 +185,17 @@ function loop() {
             balls[i].draw();
             balls[i].update();
             balls[i].collisionDetect();
+
+            ballsCount++;
         }
     }
 
     evilCircle.draw();
     evilCircle.checkBounds();
     evilCircle.collisionDetect();
+
+    p.textContent = textBallCount + ballsCount;
+    ballsCount = 0;
 
     requestAnimationFrame(loop);
 }
